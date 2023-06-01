@@ -22,7 +22,12 @@ public class Weapon : MonoBehaviour
 
                 //If zombie is killed, calls the event with death mechanic
                 else
+                {
                     enemyController.onZombieKilled?.Invoke(hitInfo.collider.gameObject);
+
+                    Instantiate(bloodParticle, hitInfo.point, Quaternion.LookRotation(-hitInfo.normal));
+                }
+                    
             }
 
             //If we shot in hitable object, we spawn a bullet trace (hole)

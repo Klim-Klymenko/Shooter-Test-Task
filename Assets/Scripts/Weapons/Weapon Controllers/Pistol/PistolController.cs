@@ -58,18 +58,19 @@ public class PistolController : Weapon
 
     private void Update()
     {
-        Shooting();
-
-        Reloading();
-
-        Misfire(loadedBullets, shootingAudioSource, misfireClip);
-
         //if we do shoot, we call a recoil methods
         if (isShooting && !isReloading)
         {
             CameraShaking(ref recoilTime, cameraRecoilForce, initialRotation);
             PistolRecoil();
         }
+
+        Shooting();
+
+        Reloading();
+
+        Misfire(loadedBullets, shootingAudioSource, misfireClip);
+
 
         //if we reload, we start animation of reload
         if (!isShooting && isReloading)
@@ -162,7 +163,7 @@ public class PistolController : Weapon
         //start playing empty animation and making delay to avoid second cycle of recoil animation
         pistolAnimator.Play("New State");
 
-        await Task.Delay(50);
+        await Task.Delay(30);
 
         //stop playnig animation
         pistolAnimator.enabled = false;
